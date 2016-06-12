@@ -26,3 +26,5 @@ vignettes/*.pdf
 *.Rproj
 # Processed data files
 data/processed/*.csv
+output/figures/*.png
+output/data/*.csv
