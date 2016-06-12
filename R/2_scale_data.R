@@ -16,5 +16,13 @@ n_area_data_std = n_area_data
 # Replace the original values with the transformed ones:
 n_area_data_std$value = residuals(area_lm)
 
-# And return the data to wide format:
-area_data_std = spread(n_area_data_std, trait, value)
+# And return the data to wide format and select the columns that we need:
+area_data_std =
+  spread(n_area_data_std, trait, value) %>%
+  select(ID, FAMILY, SEX, area1:area7, A1:I5)
+
+# We can also scale the data to unit variance
+area_data_std = area_data_std %>% mutate_each(funs(scale), matches('area'))
+
+# It will be usefull to have the data in narrow format for plotting
+n_area_data_std = gather(area_data_std, trait, value, area1:area7)

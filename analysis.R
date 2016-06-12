@@ -2,9 +2,10 @@ if(!require(install.load)) {install.packages("install.load"); library(install.lo
 install_load("plyr", "dplyr", "tidyr", "readr", "ggplot2", "cowplot", "MCMCglmm", "evolqg", "gdata", "devtools")
 
 # Read data
-
 source('R/1_read_data.R')
 
-# Prepare data for mixed model
-
+# Prepare data for mixed model by removing fixed effects
 source('R/2_scale_data.R')
+
+# Verify everything is ok using some plots
+source('R/3_diagnostics_plots.R')
