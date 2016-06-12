@@ -24,3 +24,5 @@ vignettes/*.pdf
 *.knit.md
 .Rproj.user
 *.Rproj
+# Processed data files
+data/processed/*.csv
