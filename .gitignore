@@ -28,3 +28,4 @@ vignettes/*.pdf
 data/processed/*.csv
 output/figures/*.png
 output/data/*.csv
+cached/*
