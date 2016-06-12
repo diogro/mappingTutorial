@@ -17,7 +17,7 @@ runNullMCMCModel <- function(null_formula, pl = TRUE, ...) {
                G = list(G1 = list(V = diag(num_area_traits) * 0.02, n = 0.001)))
   area_MCMC_null_model = MCMCglmm(as.formula(null_formula),
                                   random = ~us(trait):FAMILY,
-                                  data = as.data.frame(area_data),
+                                  data = as.data.frame(area_data_std),
                                   rcov = ~us(trait):units,
                                   family = rep("gaussian", num_area_traits),
                                   prior = prior,
@@ -26,14 +26,24 @@ runNullMCMCModel <- function(null_formula, pl = TRUE, ...) {
   return(area_MCMC_null_model)
 }
 
-area_MCMC_null_model = runNullMCMCModel(null_formula, nitt=150000, thin=100, burnin=50000)
-write_rds(area_MCMC_null_model, "cached/area_MCMC_null_model.Rds")
-area_MCMC_null_model = read_rds("cached/area_MCMC_null_model.Rds")
+area_MCMC_null_model = tryCatch(
+  {
+    read_rds("cached/area_MCMC_null_model.Rds")
+  },
+  error = function(cond) {
+    message(cond)
+    message("\nCould not find cached model, running null model")
+    area_MCMC_null_model = runNullMCMCModel(null_formula, nitt=15000, thin=10, burnin=5000)
+    write_rds(area_MCMC_null_model, "cached/area_MCMC_null_model.Rds")
+    return(area_MCMC_null_model)
+  })
+
 
 summary(area_MCMC_null_model)
 
-Gs_mcmc = array(area_MCMC_null_model$VCV[,1:(num_area_traits*num_area_traits)], dim = c(1000, num_area_traits, num_area_traits))
-G_mcmc = apply(array(area_MCMC_null_model$VCV[,1:(num_area_traits*num_area_traits)], dim = c(1000, num_area_traits, num_area_traits)), 2:3, median)
+n_mcmc = dim(area_MCMC_null_model$Sol)[1]
+G_mcmc = apply(array(area_MCMC_null_model$VCV[,1:(num_area_traits*num_area_traits)],
+                     dim = c(n_mcmc, num_area_traits, num_area_traits)), 2:3, median)
 
 R_mcmc = apply(array(area_MCMC_null_model$VCV[,-c(1:(num_area_traits*num_area_traits))],
-                     dim = c(1000, num_area_traits, num_area_traits)), 2:3, median)
+                     dim = c(n_mcmc, num_area_traits, num_area_traits)), 2:3, median)
