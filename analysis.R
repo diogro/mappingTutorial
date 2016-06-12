@@ -3,4 +3,8 @@ install_load("plyr", "dplyr", "tidyr", "readr", "ggplot2", "cowplot", "MCMCglmm"
 
 # Read data
 
-source('./R/read_data.R')
+source('R/1_read_data.R')
+
+# Prepare data for mixed model
+
+source('R/2_scale_data.R')
