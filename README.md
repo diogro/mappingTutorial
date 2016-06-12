@@ -4,7 +4,9 @@ Basic data acquisition in R and QTL mapping using MCMCglmm.
 
 # Project organization
 
-- data, scripts and output folders
+- [data, scripts and output folders](http://nicercode.github.io/blog/2013-04-05-projects/)
+- [More complex projects can be structured as packages](http://www.carlboettiger.info/2012/05/06/research-workflow.html)
+- Automatic [ProjectTemplate](http://projecttemplate.net/)
 
 - Rstudio projects and version control
 
