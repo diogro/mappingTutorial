@@ -9,3 +9,7 @@ source('R/2_scale_data.R')
 
 # Verify everything is ok using some plots
 source('R/3_diagnostics_plots.R')
+
+# Set up the mapping
+
+source('R/4_run_null_model.R')
