@@ -32,4 +32,4 @@ runSingleLocusMCMCModel <- function(marker_term, null_formula, start = NULL, ...
 }
 
 all_loci_list = llply(markerList, runSingleLocusMCMCModel,
-                      null_formula, start, nitt=3100, thin=10, burnin=3000, .parallel = TRUE)
+                      null_formula, start, nitt=10300, thin=10, burnin=300, .parallel = TRUE)
