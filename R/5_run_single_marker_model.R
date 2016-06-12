@@ -1,6 +1,3 @@
-install_load("doParallel")
-registerDoParallel(cores = 3)
-
 num_loci = 5
 makeMarkerList = function(pos) paste(paste('trait:', c('A', 'D'), pos[2], sep = ''),
                                      collapse = ' + ')
