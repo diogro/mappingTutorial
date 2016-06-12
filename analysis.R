@@ -14,3 +14,6 @@ source('R/3_diagnostics_plots.R')
 
 ## first the null model, with no markers
 source('R/4_run_null_model.R')
+
+## now the marker models
+source('R/5_run_single_marker_model.R')
