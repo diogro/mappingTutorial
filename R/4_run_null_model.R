@@ -18,7 +18,7 @@ runNullMCMCModel <- function(null_formula, pl = TRUE, ...) {
   # In our case these are inverse-wishart with diagonal scale matrices of the same dimension
   # as the number of traits.
   prior = list(R = list(V = diag(num_area_traits), n = 0.002),
-               G = list(G1 = list(V = diag(num_area_traits) * 0.02, n = 0.001)))
+               G = list(G1 = list(V = diag(num_area_traits) * 0.02, n = num_area_traits+1)))
 
   # This is the main model call
   area_MCMC_null_model = MCMCglmm(as.formula(null_formula),   # - fixed effects
@@ -41,7 +41,7 @@ area_MCMC_null_model = tryCatch({
   },
   error = function(cond) {
     message(cond)
-    message("\nCould not find cached model, running null model")
+    message("\ncould not find cached model, running null model")
     area_MCMC_null_model = runNullMCMCModel(null_formula, nitt=15000, thin=10, burnin=5000)
     write_rds(area_MCMC_null_model, "cached/area_MCMC_null_model.Rds")
     return(area_MCMC_null_model)
