@@ -42,7 +42,7 @@ area_MCMC_null_model = tryCatch({
   error = function(cond) {
     message(cond)
     message("\ncould not find cached model, running null model")
-    area_MCMC_null_model = runNullMCMCModel(null_formula, nitt=15000, thin=10, burnin=5000)
+    area_MCMC_null_model = runNullMCMCModel(null_formula, nitt=13000, thin=10, burnin=3000)
     write_rds(area_MCMC_null_model, "cached/area_MCMC_null_model.Rds")
     return(area_MCMC_null_model)
   })
@@ -65,7 +65,7 @@ P = area_data_std %>% select(area1:area7) %>% cov
 PvsGR_plot = data.frame(  P =                 P[lower.tri(P, T)],
                         G.R = (G_mcmc + R_mcmc)[lower.tri(P, T)]) %>%
   ggplot(aes(P, G.R)) + geom_point() + geom_abline()
-save_plot("output/figures/PvsGR.png", PvsGR_plot, base_height = 6, base_width = 1.8)
+save_plot("output/figures/PvsGR.png", PvsGR_plot, base_height = 6, base_aspect_ratio = 1.8)
 
 # Now we use this to set up a starting point of the next models. Much faster!
 start <- list(R = list(V = R_mcmc),

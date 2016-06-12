@@ -4,7 +4,7 @@ install_load("plyr", "dplyr", "tidyr", "readr", "ggplot2", "cowplot", "MCMCglmm"
 # Read data
 source('R/1_read_data.R')
 
-# Prepare data for mixed model by removing fixed effects
+# Prepare data for mixed model by removing fixed effects and scalling
 source('R/2_scale_data.R')
 
 # Verify everything is ok using some plots
