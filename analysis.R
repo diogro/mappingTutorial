@@ -12,4 +12,5 @@ source('R/3_diagnostics_plots.R')
 
 # Set up the mapping
 
+## first the null model, with no markers
 source('R/4_run_null_model.R')
