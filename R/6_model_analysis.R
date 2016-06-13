@@ -21,11 +21,9 @@ write_csv(marker_effects, "output/data/effects_singleLocus.csv")
 
 # Per model DIC difference. A measure of how much better the fit with the marker is in relation to
 # the null model. Higher values indicate more evidence in favor of an effect.
-
 DIC_diff = area_MCMC_null_model$DIC - laply(all_loci_list, function(model) model$DIC)
 
-# Now some plots:
-
+# Some plots:
 marker_plot_data = marker_effects %>%
   select(chrom, marker, trait,
          ad_mean, ad_lower, ad_upper,

@@ -29,7 +29,7 @@ runSingleLocusMCMCModel <- function(marker_term, null_formula, start = NULL, ...
       area_singleMarker_model <-
         MCMCglmm(as.formula(genotype.formula),
                  random = ~us(trait):FAMILY,
-                 data = as.data.frame(area_data),
+                 data = as.data.frame(area_data_std),
                  rcov = ~us(trait):units,
                  family = rep("gaussian", num_area_traits),
                  start = start,
