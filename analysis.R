@@ -16,5 +16,6 @@ source('R/3_diagnostics_plots.R')
 source('R/4_run_null_model.R')
 
 ## now the marker models
-install_load("doParallel"); registerDoParallel(cores = 3)
+# install_load("doParallel"); registerDoParallel(cores = 3) # Windows
+# install_load("doMC"); registerDoMC(3)                     # Mac and Linux
 source('R/5_run_single_marker_model.R')
