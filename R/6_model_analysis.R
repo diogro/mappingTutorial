@@ -43,3 +43,4 @@ marker_plot <-
   geom_errorbar(data = filter(marker_plot_data, type == "dominance"),
                 aes(ymin = dm_lower, ymax = dm_upper), width = 0) +
   facet_grid(marker~type)
+save_plot("output/figures/markerEffects.png", marker_plot, base_height = 6, base_aspect_ratio = 2)
