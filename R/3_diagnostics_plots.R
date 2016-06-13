@@ -6,6 +6,12 @@ unscaled_area_plot = ggplot(n_area_data, aes(SEX, value)) +
 save_plot("output/figures/unscaled_area.png", unscaled_area_plot,
           base_height = 6, base_aspect_ratio = 1.8)
 
+# Outlier detection
+# http://www.statistik.tuwien.ac.at/forschung/CS/CS-2006-3complete.pdf
+area_array = area_data %>% select(area1:area7)
+x.out = pcout(area_array, makeplot = TRUE)
+aq.plot(area_array)
+
 # Scaled data:
 
 scaled_area_plot = ggplot(n_area_data_std, aes(trait, value)) +
